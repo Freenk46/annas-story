@@ -4,19 +4,19 @@ import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 
-type CategoryItem = {
+type CollectionItem = {
   number: string
   name: string
   slug: string
 }
 
 export default function CatalogContent() {
-  const t = useTranslations('categories')
+  const t = useTranslations('collections')
   const locale = useLocale()
   const searchParams = useSearchParams()
-  const activeCategory = searchParams.get('category') ?? 'all'
+  const activeCollection = searchParams.get('collection') ?? 'all'
 
-  const categories = t.raw('items') as CategoryItem[]
+  const collections = t.raw('items') as CollectionItem[]
 
   return (
     <div className="min-h-screen bg-ink pt-32 pb-24 px-8 md:px-16 lg:px-24">
@@ -34,19 +34,19 @@ export default function CatalogContent() {
           <Link
             href={`/${locale}/catalog`}
             className={`px-5 py-2 text-[10px] tracking-[0.2em] uppercase transition-colors ${
-              activeCategory === 'all'
+              activeCollection === 'all'
                 ? 'bg-paper text-ink'
                 : 'text-ghost hover:text-paper border border-line hover:border-ghost'
             }`}
           >
             All
           </Link>
-          {categories.map((cat) => (
+          {collections.map((cat) => (
             <Link
               key={cat.slug}
-              href={`/${locale}/catalog?category=${cat.slug}`}
+              href={`/${locale}/catalog?collection=${cat.slug}`}
               className={`px-5 py-2 text-[10px] tracking-[0.2em] uppercase transition-colors ${
-                activeCategory === cat.slug
+                activeCollection === cat.slug
                   ? 'bg-paper text-ink'
                   : 'text-ghost hover:text-paper border border-line hover:border-ghost'
               }`}

@@ -6,11 +6,11 @@ import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../../../../lib/useLanguage'
 import {
-  getCollectionBySlug,
-  getRelatedCollections,
-  type Collection,
+  getCategoryBySlug,
+  getRelatedCategories,
+  type Category,
   type Product,
-} from '../../../../lib/collections-data'
+} from '../../../../lib/categories-data'
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
@@ -70,11 +70,11 @@ function ProductCard({ product, href }: { product: Product; href: string }) {
   )
 }
 
-// ── Related collection card (Section 2) ──────────────────────────────────────
-function RelatedCard({ col, locale }: { col: Collection; locale: string }) {
+// ── Related category card (Section 2) ──────────────────────────────────────
+function RelatedCard({ col, locale }: { col: Category; locale: string }) {
   const thumb = col.coverImage || col.products[0]?.coverImage || ''
   return (
-    <Link href={`/${locale}/collections/${col.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+    <Link href={`/${locale}/categories/${col.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
       <div style={{ overflow: 'hidden', aspectRatio: '4/5', background: 'var(--bg-secondary)' }}>
         {thumb ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -109,29 +109,29 @@ function RelatedCard({ col, locale }: { col: Collection; locale: string }) {
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
-export default function CollectionPage() {
+export default function CategoryPage() {
   const params     = useParams()
   const { locale, t } = useLanguage()
-  const cd = t.collectionDetail
+  const cd = t.categoryDetail
 
   const slug       = Array.isArray(params.slug) ? params.slug[0] : params.slug
-  const collection = getCollectionBySlug(slug ?? '')
+  const category = getCategoryBySlug(slug ?? '')
 
   const related = useMemo(
-    () => collection ? getRelatedCollections(collection, 4) : [],
+    () => category ? getRelatedCategories(category, 4) : [],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [collection?.slug]
+    [category?.slug]
   )
 
-  if (!collection) {
+  if (!category) {
     return (
       <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg)' }}>
-        <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-family-serif)', fontStyle: 'italic' }}>Collection not found.</p>
+        <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-family-serif)', fontStyle: 'italic' }}>Category not found.</p>
       </main>
     )
   }
 
-  const count = collection.products.length
+  const count = category.products.length
 
   return (
     <main style={{ background: 'var(--bg)', minHeight: '100vh' }}>
@@ -219,12 +219,12 @@ export default function CollectionPage() {
               {t.nav.works}
             </Link>
             <span>/</span>
-            <span>{collection.name}</span>
+            <span>{category.name}</span>
           </div>
 
           {/* Products */}
           <div className="cl-products">
-            {collection.products.map((product, i) => (
+            {category.products.map((product, i) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 32 }}
@@ -233,7 +233,7 @@ export default function CollectionPage() {
               >
                 <ProductCard
                   product={product}
-                  href={`/${locale}/collections/${collection.slug}/${product.id}`}
+                  href={`/${locale}/categories/${category.slug}/${product.id}`}
                 />
               </motion.div>
             ))}
@@ -259,7 +259,7 @@ export default function CollectionPage() {
 
             {/* Brand label */}
             <div style={{ fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '1rem' }}>
-              {collection.category}
+              {category.collection}
             </div>
 
             {/* Name */}
@@ -269,7 +269,7 @@ export default function CollectionPage() {
               letterSpacing: '-0.03em', textTransform: 'uppercase',
               color: 'var(--text-primary)', lineHeight: 1, margin: '0 0 2rem 0',
             }}>
-              {collection.name}
+              {category.name}
             </h1>
 
             {/* Divider */}
@@ -278,8 +278,8 @@ export default function CollectionPage() {
             {/* Meta rows */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {([
-                [cd.categoryLabel, collection.category],
-                [cd.yearLabel, collection.year],
+                [cd.collectionLabel, category.collection],
+                [cd.yearLabel, category.year],
                 ['Works', String(count)],
               ] as [string, string][]).map(([label, value]) => (
                 <div key={label} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
@@ -290,9 +290,9 @@ export default function CollectionPage() {
             </div>
 
             {/* Description */}
-            {collection.description && (
+            {category.description && (
               <p style={{ fontSize: '0.85rem', lineHeight: 1.75, color: 'var(--text-secondary)', marginTop: '2rem', maxWidth: '320px' }}>
-                {collection.description}
+                {category.description}
               </p>
             )}
           </div>

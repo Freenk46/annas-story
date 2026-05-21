@@ -6,11 +6,11 @@ import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../../../../../lib/useLanguage'
 import {
-  getCollectionBySlug,
+  getCategoryBySlug,
   getProductById,
-  getRelatedCollections,
-  type Collection,
-} from '../../../../../lib/collections-data'
+  getRelatedCategories,
+  type Category,
+} from '../../../../../lib/categories-data'
 
 // ── Accordion ─────────────────────────────────────────────────────────────────
 function Accordion({
@@ -55,10 +55,10 @@ function Accordion({
 }
 
 // ── Related card ──────────────────────────────────────────────────────────────
-function RelatedCard({ col, locale }: { col: Collection; locale: string }) {
+function RelatedCard({ col, locale }: { col: Category; locale: string }) {
   const thumb = col.products[0]?.coverImage || ''
   return (
-    <Link href={`/${locale}/collections/${col.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+    <Link href={`/${locale}/categories/${col.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
       <div style={{
         width: '100%', aspectRatio: '3/4', marginBottom: '0.85rem',
         overflow: 'hidden', background: 'var(--bg-secondary)',
@@ -99,18 +99,18 @@ export default function ProductDetailPage() {
   const params   = useParams()
   const router   = useRouter()
   const { locale, t } = useLanguage()
-  const cd = t.collectionDetail
+  const cd = t.categoryDetail
 
   const slug      = Array.isArray(params.slug)    ? params.slug[0]    : params.slug
   const productId = Array.isArray(params.product) ? params.product[0] : params.product
 
-  const collection = getCollectionBySlug(slug ?? '')
-  const product    = collection ? getProductById(collection, productId ?? '') : undefined
+  const category = getCategoryBySlug(slug ?? '')
+  const product    = category ? getProductById(category, productId ?? '') : undefined
 
   const related = useMemo(
-    () => collection ? getRelatedCollections(collection, 4) : [],
+    () => category ? getRelatedCategories(category, 4) : [],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [collection?.slug]
+    [category?.slug]
   )
 
   const [activeImg,     setActiveImg]     = useState(0)
@@ -119,7 +119,7 @@ export default function ProductDetailPage() {
   const [qty,           setQty]           = useState(1)
   const [openAccordion, setOpenAccordion] = useState<string | null>('description')
 
-  if (!collection || !product) {
+  if (!category || !product) {
     return (
       <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg)' }}>
         <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-family-serif)', fontStyle: 'italic' }}>
@@ -230,7 +230,7 @@ export default function ProductDetailPage() {
                   fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 900,
                   letterSpacing: '-0.02em', color: 'var(--text-muted)',
                   textAlign: 'center', padding: '0 2rem',
-                }}>{collection.name}</span>
+                }}>{category.name}</span>
                 <span style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
                   {product.title}
                 </span>
@@ -258,16 +258,16 @@ export default function ProductDetailPage() {
 
             {/* Breadcrumb */}
             <div style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Link href={`/${locale}/collections/${collection.slug}`} style={{ color: 'var(--text-muted)', textDecoration: 'none', borderBottom: '0.5px solid var(--border)' }}>
-                {collection.name}
+              <Link href={`/${locale}/categories/${category.slug}`} style={{ color: 'var(--text-muted)', textDecoration: 'none', borderBottom: '0.5px solid var(--border)' }}>
+                {category.name}
               </Link>
               <span>/</span>
               <span style={{ color: 'var(--text-secondary)' }}>{product.title}</span>
             </div>
 
-            {/* Category + year */}
+            {/* Collection + year */}
             <div style={{ fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-              {collection.category} · {collection.year}
+              {category.collection} · {category.year}
             </div>
 
             {/* Title */}
@@ -276,7 +276,7 @@ export default function ProductDetailPage() {
               fontSize: 'clamp(2.2rem, 4.5vw, 4rem)', fontWeight: 900,
               letterSpacing: '-0.03em', color: 'var(--text-primary)',
               lineHeight: 1, margin: '0 0 0.2rem 0',
-            }}>{collection.name}</h1>
+            }}>{category.name}</h1>
 
             <div style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '1.1rem', fontWeight: 300, color: 'var(--text-secondary)', marginBottom: '1.75rem' }}>
               {product.title}
@@ -351,7 +351,7 @@ export default function ProductDetailPage() {
             {/* Client row */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', marginBottom: '1.25rem' }}>
               <span style={{ fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{cd.client}</span>
-              <span style={{ fontFamily: 'var(--font-family-serif)', fontSize: '1rem', fontWeight: 500, color: 'var(--text-primary)' }}>{collection.name}</span>
+              <span style={{ fontFamily: 'var(--font-family-serif)', fontSize: '1rem', fontWeight: 500, color: 'var(--text-primary)' }}>{category.name}</span>
             </div>
 
             {/* Credits */}
@@ -376,8 +376,8 @@ export default function ProductDetailPage() {
             >
               <div style={{ fontSize: '0.83rem', color: 'var(--text-secondary)' }}>
                 {([
-                  [cd.yearLabel, collection.year],
-                  [cd.categoryLabel, collection.category],
+                  [cd.yearLabel, category.year],
+                  [cd.collectionLabel, category.collection],
                   [cd.formatsLabel, product.formats.join(', ')],
                 ] as [string, string][]).map(([label, val], i, arr) => (
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: '0.45rem', borderBottom: i < arr.length - 1 ? '0.5px solid var(--border)' : 'none', marginBottom: i < arr.length - 1 ? '0.45rem' : 0 }}>

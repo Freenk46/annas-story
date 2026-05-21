@@ -4,7 +4,7 @@
     "about": "ABOUT",
     "contact": "CONTACT",
     "catalog": "Catalog",
-    "collections": "Collections",
+    "categories": "Categories",
     "aboutBrand": "ABOUT",
     "our": "our",
     "brand": "BRAND"
@@ -37,8 +37,8 @@
     "fredBio1": "Fred Bauer was born and raised in Paris. After studying at ESRA Paris, he began his career in video editing before switching to VFX, where he made a significant impact at Mac Guff Paris. He returned to directing a few years later, before focusing on TV branding and becoming an art director at Canal+ for nearly five years.",
     "fredBio2": "At annas-story, Fred leads a talented team of creatives across a range of projects, from art direction to postproduction."
   },
-  "collections": {
-    "label": "Collections",
+  "categories": {
+    "label": "Categories",
     "items": [
       { "number": "01", "name": "Pure Comfort", "desc": "Bamboo fibre — soft, breathable, anti-allergic" },
       { "number": "02", "name": "Spa Ritual", "desc": "Turkish cotton 600gsm — salon comfort at home" },
@@ -48,8 +48,8 @@
       { "number": "06", "name": "Heritage", "desc": "Organic cotton GOTS — eco-certified and pure" }
     ]
   },
-  "categories": {
-    "label": "Categories",
+  "collections": {
+    "label": "Collections",
     "items": [
       { "number": "01", "name": "Sets", "slug": "set" },
       { "number": "02", "name": "Towels", "slug": "towel" },
@@ -68,7 +68,7 @@
     "location": "Batumi, Georgia",
     "delivery": "Delivery across Georgia"
   },
-  "collectionDetail": {
+  "categoryDetail": {
     "back": "Back",
     "client": "Client",
     "colorsLabel": "Colour",
@@ -77,7 +77,7 @@
     "descriptionLabel": "Description",
     "technicalLabel": "Technical Info",
     "yearLabel": "Year",
-    "categoryLabel": "Category",
+    "collectionLabel": "Collection",
     "relatedTitle": "Related Works",
     "wantLine1": "WANT",
     "wantTo": "to",

@@ -176,7 +176,7 @@ export default function Header() {
           <nav className="hd-nav-links" style={{ gap: '2rem', alignItems: 'center' }}>
 
             <Link
-              href={`/${locale}#collections`}
+              href={`/${locale}#categories`}
               style={{ ...baseStyle, fontWeight: dimWeight, color: dimColor }}
               onMouseEnter={e => (e.currentTarget.style.opacity = '0.5')}
               onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
@@ -305,7 +305,7 @@ export default function Header() {
             </button>
 
             <Link
-              href={`/${locale}#collections`}
+              href={`/${locale}#categories`}
               onClick={() => setMenuOpen(false)}
               style={menuLinkStyle}
             >

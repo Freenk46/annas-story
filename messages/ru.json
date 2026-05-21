@@ -4,7 +4,7 @@
     "about": "О НАС",
     "contact": "КОНТАКТ",
     "catalog": "Каталог",
-    "collections": "Коллекции",
+    "categories": "Коллекции",
     "aboutBrand": "О НАС",
     "our": "наш",
     "brand": "БРЕНД"
@@ -37,7 +37,7 @@
     "fredBio1": "Фред Бауэр родился и вырос в Париже. После учёбы в ESRA Paris он начал карьеру в видеомонтаже, затем перешёл в VFX, где оставил значительный след в Mac Guff Paris. Спустя несколько лет вернулся к режиссуре, а затем сосредоточился на телевизионном брендинге и стал арт-директором Canal+ на почти пять лет.",
     "fredBio2": "В annas-story Фред руководит командой талантливых креаторов в широком спектре проектов — от арт-дирекции до постпродакшна."
   },
-  "collections": {
+  "categories": {
     "label": "Коллекции",
     "items": [
       { "number": "01", "name": "Pure Comfort", "desc": "Бамбуковое волокно — мягкое, дышащее, гипоаллергенное" },
@@ -48,7 +48,7 @@
       { "number": "06", "name": "Heritage", "desc": "Органический хлопок GOTS — эко-сертифицированный" }
     ]
   },
-  "categories": {
+  "collections": {
     "label": "Категории",
     "items": [
       { "number": "01", "name": "Комплекты", "slug": "set" },
@@ -68,7 +68,7 @@
     "location": "Батуми, Грузия",
     "delivery": "Доставка по Грузии"
   },
-  "collectionDetail": {
+  "categoryDetail": {
     "back": "Назад",
     "client": "Клиент",
     "colorsLabel": "Цвет",
@@ -77,7 +77,7 @@
     "descriptionLabel": "Описание",
     "technicalLabel": "Тех. информация",
     "yearLabel": "Год",
-    "categoryLabel": "Категория",
+    "collectionLabel": "Категория",
     "relatedTitle": "Похожие работы",
     "wantLine1": "ХОТИТЕ",
     "wantTo": "ещё",
