@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"c:\\\\Users\\\\sergi\\\\Desktop\\\\guja\\\\annas-story\\\\public\" /b /s)",
+      "Bash(findstr /i \"\\\\.mp4 \\\\.webm \\\\.mov\")"
+    ]
+  }
+}

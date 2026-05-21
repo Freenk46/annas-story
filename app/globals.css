@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #FFFFFF;
+  --color-paper: #0C0C0C;
+  --color-mink: #333333;
+  --color-taupe: #555555;
+  --color-ghost: #999999;
+  --color-line: #E5E5E5;
+
+  --font-family-display: var(--font-display), "Bebas Neue", var(--font-georgian), Impact, sans-serif;
+  --font-family-serif: var(--font-serif), "Cormorant Garamond", var(--font-georgian), Georgia, serif;
+  --font-family-body: var(--font-body), "Inter", system-ui, sans-serif;
+}
+
+/* ── Theme tokens ────────────────────────────────────────────────────────────── */
+:root {
+  --bg:              #fafaf8;
+  --bg-secondary:    #f0ede8;
+  --text-primary:    #111111;
+  --text-secondary:  #555555;
+  --text-muted:      #999999;
+  --border:          #e0ddd6;
+  --border-strong:   #111111;
+  --text-primary-rgb: 17, 17, 17;
+}
+
+[data-theme="dark"] {
+  --bg:              #111111;
+  --bg-secondary:    #1a1a1a;
+  --text-primary:    #f0ede8;
+  --text-secondary:  #999999;
+  --text-muted:      #555555;
+  --border:          #2a2a2a;
+  --border-strong:   #f0ede8;
+  --text-primary-rgb: 240, 237, 232;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth theme transitions — exclude media elements and animated paths */
+*, *::before, *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.2s ease;
+}
+video, img { transition: none; }
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-family-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--text-primary);
+  color: var(--bg);
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+body.font-georgian {
+  font-family: var(--font-georgian), 'Noto Sans Georgian', sans-serif;
+}
+
+@keyframes drawCurve {
+  from { stroke-dashoffset: 2000; opacity: 0; }
+  to   { stroke-dashoffset: 0;    opacity: 0.18; }
+}
