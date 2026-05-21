@@ -163,113 +163,161 @@ export default function AboutSection() {
         />
       </svg>
 
+      <style>{`
+        .about-mobile  { display: block; }
+        .about-desktop { display: none;  }
+        @media (min-width: 769px) {
+          .about-mobile  { display: none  !important; }
+          .about-desktop { display: block !important; }
+          #about { padding-bottom: 8rem; }
+        }
+      `}</style>
+
       {/* ── MOBILE layout ── */}
-      <div className="md:hidden relative flex flex-col" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Text + CTA block */}
-        <div ref={textRef} style={{ position: 'relative', padding: '20vw 8vw 10vw 8vw', borderBottom: '1px solid var(--border)' }}>
-          <div style={{ position: 'absolute', top: 0, bottom: 0, left: '35%', width: '1px', background: 'var(--border)', pointerEvents: 'none' }} />
-          <p style={{ fontSize: '9px', letterSpacing: '0.45em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '20px' }}>
-            {t.about.label}
-          </p>
-          <h2 style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 4vw, 1.8rem)', fontWeight: 300, lineHeight: 1.45, color: 'var(--text-primary)', marginBottom: '20px' }}>
-            {t.about.title}
-          </h2>
-          <p style={{ fontSize: '14px', lineHeight: 1.85, color: 'var(--text-muted)', marginBottom: '32px' }}>
+      <div
+        className="about-mobile"
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          display: 'grid',
+          gridTemplateColumns: '30% 70%',
+          gridTemplateRows: 'auto auto',
+        }}
+      >
+        {/* Top-left: empty */}
+        <div style={{ borderRight: '0.5px solid var(--border)', minHeight: '200px' }} />
+
+        {/* Top-right: tagline + link */}
+        <div
+          ref={textRef}
+          style={{
+            padding: '2rem 1.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <p style={{
+            fontFamily: 'Cormorant Garamond, var(--font-family-serif), serif',
+            fontStyle: 'italic',
+            fontSize: 'clamp(1.1rem, 4.5vw, 1.4rem)',
+            lineHeight: 1.5,
+            color: 'var(--text-primary)',
+            margin: 0,
+          }}>
             {t.about.tagline}
           </p>
           <Link
             ref={ctaRef}
             href={`/${locale}/about`}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--text-primary)', textDecoration: 'none' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginTop: '1.5rem',
+              fontSize: '0.85rem',
+              color: 'var(--text-primary)',
+              textDecoration: 'none',
+            }}
           >
-            <span style={{ fontSize: '8px' }}>▶</span>
-            <span style={{ borderBottom: `1px solid rgba(var(--text-primary-rgb), 0.3)`, paddingBottom: '1px' }}>{t.about.link}</span>
+            ▸ {t.about.link}
           </Link>
         </div>
 
-        {/* Video block */}
-        <div ref={mediaRef} style={{ position: 'relative', width: '100%', aspectRatio: '3/2', overflow: 'hidden', marginBottom: '18vw' }}>
+        {/* Bottom row: video */}
+        <div
+          ref={mediaRef}
+          style={{
+            gridColumn: '1 / -1',
+            padding: '1rem',
+            boxSizing: 'border-box',
+            margin: 0,
+          }}
+        >
           <video
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+            style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }}
             autoPlay muted loop playsInline
           >
             <source src="/videos/aboute.mp4" type="video/mp4" />
           </video>
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom right, rgba(51,51,51,0.25), rgba(85,85,85,0.12), rgba(153,153,153,0.08))', display: 'flex', alignItems: 'flex-end', padding: '20px' }}>
-            <span style={{ fontFamily: 'var(--font-family-display)', fontSize: '3.5rem', lineHeight: 1, color: 'rgba(12,12,12,0.08)', userSelect: 'none' }}>02</span>
-          </div>
         </div>
       </div>
 
       {/* ── DESKTOP layout: 2×2 grid ── */}
       <div
-        className="hidden md:grid absolute inset-0"
-        style={{
-          gridTemplateColumns: '35fr 65fr',
-          gridTemplateRows: '42fr 58fr',
-          height: '140vh',
-          zIndex: 1,
-        }}
+        className="about-desktop"
+        style={{ position: 'relative', zIndex: 1 }}
       >
-        {/* Dividers */}
-        <div className="absolute inset-y-0 w-px bg-line z-20 pointer-events-none" style={{ left: '35%' }} />
-        <div className="absolute inset-x-0 h-px bg-line z-20 pointer-events-none" style={{ top: '42%' }} />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gridTemplateRows: '1fr 1fr',
+            height: '100vh',
+            position: 'relative',
+            borderRight: '3px solid var(--text-primary)',
+          }}
+        >
+          {/* Column divider */}
+          <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '0.5px', background: 'var(--border)', zIndex: 2, pointerEvents: 'none' }} />
+          {/* Row divider */}
+          <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '0.5px', background: 'var(--border)', zIndex: 2, pointerEvents: 'none' }} />
 
-        {/* TOP-LEFT: empty */}
-        <div />
+          {/* Cell 1: top-left — empty */}
+          <div />
 
-        {/* TOP-RIGHT: text → bottom-left corner */}
-        <div className="flex flex-col justify-end items-start" style={{ padding: 'clamp(20px,5vh,112px) clamp(8px,2vw,64px) 0 clamp(8px,2vw,80px)' }}>
-          <div ref={textRef} style={{ paddingBottom: 'clamp(16px,3vh,40px)', paddingLeft: 'clamp(8px,2.8vw,40px)' }}>
-            <p className="text-[9px] tracking-[0.45em] uppercase text-ghost mb-5">
-              {t.about.label}
-            </p>
-            <h2
-              className="font-display uppercase text-paper"
-              style={{ fontSize: 'clamp(1.2rem, 2.4vw, 2.4rem)', lineHeight: 1.2, letterSpacing: '0.02em' }}
-            >
+          {/* Cell 2: top-right — tagline */}
+          <div
+            ref={textRef}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 3rem' }}
+          >
+            <p style={{
+              fontFamily: 'Cormorant Garamond, var(--font-family-serif), serif',
+              fontStyle: 'italic',
+              fontSize: 'clamp(1.2rem, 1.8vw, 2rem)',
+              lineHeight: 1.55,
+              color: 'var(--text-primary)',
+              margin: 0,
+              textAlign: 'center',
+            }}>
               {t.about.tagline}
-            </h2>
+            </p>
           </div>
-        </div>
 
-        {/* BOTTOM-LEFT: video → top-right corner */}
-        <div className="flex flex-col justify-start items-end">
+          {/* Cell 3: bottom-left — video */}
           <div
             ref={mediaRef}
-            className="w-[85%] aspect-[3/2] overflow-hidden relative"
-            style={{ marginTop: 'clamp(16px,3vh,40px)', marginRight: 'clamp(8px,2.8vw,40px)', boxShadow: '0 16px 40px rgba(0,0,0,0.07)' }}
+            style={{ overflow: 'hidden', position: 'relative' }}
           >
             <video
-              className="absolute inset-0 w-full h-full object-cover"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
               autoPlay muted loop playsInline
             >
               <source src="/videos/aboute.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-br from-mink/25 via-taupe/12 to-ghost/8 flex items-end p-5">
-              <span className="font-display text-[3.5rem] leading-none text-paper/8 select-none">02</span>
-            </div>
+          </div>
+
+          {/* Cell 4: bottom-right — link */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link
+              ref={ctaRef}
+              href={`/${locale}/about`}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '0.85rem',
+                letterSpacing: '0.25em',
+                textTransform: 'uppercase',
+                color: 'var(--text-primary)',
+                textDecoration: 'none',
+              }}
+            >
+              ▸ {t.about.link}
+            </Link>
           </div>
         </div>
-
-        {/* BOTTOM-RIGHT: CTA → top-left corner */}
-        <div className="flex flex-col justify-start items-start">
-          <Link
-            ref={ctaRef}
-            href={`/${locale}/about`}
-            className="inline-flex items-center gap-3 text-[13px] tracking-[0.28em] uppercase text-paper group"
-            style={{ marginTop: 'clamp(16px,3vh,40px)', marginLeft: 'clamp(8px,2.8vw,40px)' }}
-          >
-            <span className="text-[11px] transition-transform group-hover:translate-x-0.5">▶</span>
-            <span className="border-b border-paper/30 group-hover:border-paper transition-colors pb-px">
-              {t.about.link}
-            </span>
-          </Link>
-        </div>
       </div>
-
-      {/* desktop section height spacer */}
-      <div className="hidden md:block" style={{ height: '140vh' }} />
     </section>
   )
 }

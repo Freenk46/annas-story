@@ -39,7 +39,6 @@
   },
   "collections": {
     "label": "Collections",
-    "view_all": "View all",
     "items": [
       { "number": "01", "name": "Pure Comfort", "desc": "Bamboo fibre — soft, breathable, anti-allergic" },
       { "number": "02", "name": "Spa Ritual", "desc": "Turkish cotton 600gsm — salon comfort at home" },
@@ -80,7 +79,6 @@
     "yearLabel": "Year",
     "categoryLabel": "Category",
     "relatedTitle": "Related Works",
-    "viewAll": "View all",
     "wantLine1": "WANT",
     "wantTo": "to",
     "wantLine2": "SEE MORE"

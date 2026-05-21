@@ -39,7 +39,6 @@
   },
   "collections": {
     "label": "Коллекции",
-    "view_all": "Смотреть все",
     "items": [
       { "number": "01", "name": "Pure Comfort", "desc": "Бамбуковое волокно — мягкое, дышащее, гипоаллергенное" },
       { "number": "02", "name": "Spa Ritual", "desc": "Турецкий хлопок 600gsm — salon-комфорт дома" },
@@ -80,7 +79,6 @@
     "yearLabel": "Год",
     "categoryLabel": "Категория",
     "relatedTitle": "Похожие работы",
-    "viewAll": "Смотреть все",
     "wantLine1": "ХОТИТЕ",
     "wantTo": "ещё",
     "wantLine2": "УВИДЕТЬ"

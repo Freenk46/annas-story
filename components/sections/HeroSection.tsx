@@ -57,16 +57,20 @@ export default function HeroSection() {
     <section
       data-nav-theme="dark"
       style={{
-        width:    '100vw',
-        height:   '100vh',
-        position: 'relative',
-        overflow: 'hidden',
-        background: '#111',
+        width:      '100vw',
+        height:     '100vh',
+        marginTop:  0,
+        paddingTop: 0,
+        position:   'relative',
+        zIndex:     0,
+        overflow:   'hidden',
+        background: 'url(/images/hero-poster.jpg) center/cover #111',
       }}
     >
       {/* Background video */}
       <video
         src="/videos/hero.mp4"
+        poster="/images/hero-poster.jpg"
         autoPlay muted loop playsInline
         style={{
           position:   'absolute',

@@ -347,6 +347,6 @@ export function getProductById(collection: Collection, productId: string): Produ
 export function getRelatedCollections(current: Collection, count = 4): Collection[] {
   const same   = collections.filter(c => c.slug !== current.slug && c.category === current.category)
   const others = collections.filter(c => c.slug !== current.slug && c.category !== current.category)
-  const shuffle = <T,>(arr: T[]) => [...arr].sort(() => Math.random() - 0.5)
-  return [...shuffle(same), ...shuffle(others)].slice(0, count)
+  // Deterministic order: same-category first, then others — stable across SSR and client
+  return [...same, ...others].slice(0, count)
 }

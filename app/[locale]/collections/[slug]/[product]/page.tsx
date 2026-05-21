@@ -399,9 +399,6 @@ export default function ProductDetailPage() {
           <h2 style={{ fontFamily: 'var(--font-family-display)', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 900, letterSpacing: '-0.02em', margin: 0, color: 'var(--text-primary)' }}>
             {cd.relatedTitle}
           </h2>
-          <Link href={`/${locale}/`} style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '0.88rem', color: 'var(--text-secondary)', textDecoration: 'none', borderBottom: '0.5px solid var(--border)', paddingBottom: '1px' }}>
-            {cd.viewAll} →
-          </Link>
         </div>
         <div className="pd-related-grid">
           {related.map((col, i) => (

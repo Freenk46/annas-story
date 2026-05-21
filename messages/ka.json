@@ -39,7 +39,6 @@
   },
   "collections": {
     "label": "კოლექციები",
-    "view_all": "ყველა ნახვა",
     "items": [
       { "number": "01", "name": "Pure Comfort", "desc": "ბამბუკის ბოჭკო — ნაზი, ჰაეროვანი, ანტი-ალერგიული" },
       { "number": "02", "name": "Spa Ritual", "desc": "თურქული ბამბა 600gsm — სალონური კომფორტი სახლში" },
@@ -80,7 +79,6 @@
     "yearLabel": "წელი",
     "categoryLabel": "კატეგორია",
     "relatedTitle": "მსგავსი სამუშაოები",
-    "viewAll": "ყველა ნახვა",
     "wantLine1": "გინდა",
     "wantTo": "კიდევ",
     "wantLine2": "სხვა"

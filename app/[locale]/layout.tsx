@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server'
 import Header from '../../components/layout/Header'
 import ContactPanel from '../../components/layout/ContactPanel'
 import ContactDrawer from '../../components/ContactDrawer'
+import PageWrapper from '../../components/layout/PageWrapper'
 import Footer from '../../components/Footer'
 
 export default async function LocaleLayout({
@@ -21,10 +22,10 @@ export default async function LocaleLayout({
       <Header />
       <ContactPanel />
       <ContactDrawer />
-      <div style={{ paddingTop: '68px' }}>
+      <PageWrapper>
         {children}
         <Footer />
-      </div>
+      </PageWrapper>
     </NextIntlClientProvider>
   )
 }
