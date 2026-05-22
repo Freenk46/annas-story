@@ -1,5 +1,6 @@
 {
   "nav": {
+    "logo": "Anna's Story",
     "works": "WORKS",
     "about": "ABOUT",
     "contact": "CONTACT",
@@ -16,19 +17,8 @@
     "scroll": "Scroll"
   },
   "about": {
-    "label": "About",
-    "title": "Anna's Story — where comfort becomes an art form.",
     "tagline": "Prototype is a creative-driven hybrid structure, a one-stop shop, from ideas to execution. We are not just a production house, we are an agency, a design studio, and a digital factory all in one place. A place where brands can be more authentic, bold, and rise above the crowd.",
     "link": "About us",
-    "body": "We create bedding that unites longevity and beauty. Every set from Batumi — with love, precision, and care.",
-    "stat1_value": "2019",
-    "stat1_label": "Founded",
-    "stat2_value": "1,200+",
-    "stat2_label": "Happy clients",
-    "stat3_value": "100%",
-    "stat3_label": "Natural materials"
-  },
-  "aboutPage": {
     "heading1": "ABOUT",
     "our": "our",
     "heading2": "BRAND",
@@ -37,8 +27,31 @@
     "fredBio1": "Fred Bauer was born and raised in Paris. After studying at ESRA Paris, he began his career in video editing before switching to VFX, where he made a significant impact at Mac Guff Paris. He returned to directing a few years later, before focusing on TV branding and becoming an art director at Canal+ for nearly five years.",
     "fredBio2": "At annas-story, Fred leads a talented team of creatives across a range of projects, from art direction to postproduction."
   },
+  "collections": {
+    "label": "Collections",
+    "viewLabel": "View",
+    "items": [
+      { "number": "01", "name": "Sets", "slug": "set" },
+      { "number": "02", "name": "Towels", "slug": "towel" },
+      { "number": "03", "name": "Pillowcases", "slug": "pillowcase" },
+      { "number": "04", "name": "Singles", "slug": "single" }
+    ],
+    "notFound": "Collection not found.",
+    "includes": "INCLUDES",
+    "whatsIncluded": "WHAT'S INCLUDED",
+    "includedBadge": "Included in this set",
+    "contactUs": "GET IN TOUCH",
+    "save": "Save",
+    "moreSets": "MORE",
+    "our": "our",
+    "ourSets": "SETS",
+    "breadcrumb": "Collections",
+    "breadcrumbSep": "/"
+  },
   "categories": {
     "label": "Categories",
+    "typeLabel": "Bedding",
+    "worksHeader": "Works",
     "items": [
       { "number": "01", "name": "Pure Comfort", "desc": "Bamboo fibre — soft, breathable, anti-allergic" },
       { "number": "02", "name": "Spa Ritual", "desc": "Turkish cotton 600gsm — salon comfort at home" },
@@ -48,52 +61,54 @@
       { "number": "06", "name": "Heritage", "desc": "Organic cotton GOTS — eco-certified and pure" }
     ]
   },
-  "collections": {
-    "label": "Collections",
-    "items": [
-      { "number": "01", "name": "Sets", "slug": "set" },
-      { "number": "02", "name": "Towels", "slug": "towel" },
-      { "number": "03", "name": "Pillowcases", "slug": "pillowcase" },
-      { "number": "04", "name": "Singles", "slug": "single" }
-    ]
-  },
-  "contact_panel": {
-    "title": "Get in touch",
-    "whatsapp": "Message on WhatsApp",
-    "instagram": "Instagram",
-    "email": "Email",
-    "hours_label": "Working hours",
-    "hours": "Mon–Sat: 10:00–20:00",
-    "location_label": "Location",
-    "location": "Batumi, Georgia",
-    "delivery": "Delivery across Georgia"
-  },
-  "categoryDetail": {
-    "back": "Back",
-    "client": "Client",
-    "colorsLabel": "Colour",
-    "formatsLabel": "Format",
-    "cta": "Request Project",
-    "descriptionLabel": "Description",
-    "technicalLabel": "Technical Info",
-    "yearLabel": "Year",
+  "categoryPage": {
+    "notFound": "Category not found.",
     "collectionLabel": "Collection",
-    "relatedTitle": "Related Works",
+    "yearLabel": "Year",
+    "work": "WORK",
+    "works": "WORKS",
     "wantLine1": "WANT",
     "wantTo": "to",
     "wantLine2": "SEE MORE"
   },
-  "contactPage": {
+  "productPage": {
+    "back": "Back",
+    "notFound": "Product not found.",
+    "colorsLabel": "Colour",
+    "formatsLabel": "Size",
+    "cta": "GET IN TOUCH",
+    "client": "Client",
+    "descriptionLabel": "Description",
+    "technicalLabel": "Technical Info",
+    "yearLabel": "Year",
+    "collectionLabel": "Collection",
+    "relatedTitle": "Related Works"
+  },
+  "contact": {
+    "panelTitle": "Get in touch",
+    "closeLabel": "Close",
+    "whatsappLabel": "WhatsApp",
+    "instagramLabel": "Instagram",
+    "emailLabel": "Email",
+    "hoursLabel": "Working hours",
+    "hours": "Mon–Sat: 10:00–20:00",
+    "sundayClosed": "Sunday: Closed",
+    "locationLabel": "Location",
+    "location": "Batumi, Georgia",
+    "delivery": "Delivery across Georgia",
+    "contactSectionLabel": "Contact",
     "line1": "LET'S",
     "line2italic": "work",
     "line2bold": "TOGETHER",
-    "email": "hello@annastory.ge",
+    "emailAddress": "hello@annastory.ge",
     "address": "Batumi, Georgia",
     "phone": "+995 XXX XXX XXX",
-    "newsletterPlaceholder": "Subscribe to the newsletter",
-    "newsletterBtn": "Ok",
-    "locationLabel": "Anna's Story",
-    "locationCity": "Batumi, Georgia"
+    "mapTitleLabel": "Anna's Story",
+    "mapTitleCity": "Batumi, Georgia",
+    "socialInstagram": "Instagram",
+    "socialYoutube": "Youtube",
+    "socialFacebook": "Facebook",
+    "socialWhatsapp": "WhatsApp"
   },
   "contactDrawer": {
     "heading": "GET IN TOUCH",
@@ -104,11 +119,82 @@
   },
   "footer": {
     "brand": "Anna's Story",
-    "tagline": "Premium bedding — Batumi, 2019",
-    "rights": "All rights reserved",
-    "agency": "Prototype",
     "contactUs": "Contact us",
+    "reel": "Reel",
     "play": "Play",
-    "copyright": "© 2025 Prototype. All rights reserved."
+    "year": "2025",
+    "phone": "+995 XXX XXX XXX",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "whatsapp": "WhatsApp",
+    "copyright": "© 2025 Anna's Story. All rights reserved."
+  },
+  "bundles": {
+    "heading1": "SHOP",
+    "our": "our",
+    "heading2": "SETS",
+    "subtitle": "-15% on every set",
+    "save": "Save"
+  },
+  "aboutPage": {
+    "heading1": "ABOUT",
+    "our": "our",
+    "heading2": "BRAND",
+    "sophieBio1": "Sophie Goussin was born on the west coast of France. After a few years abroad, she attended a Parisian advertising school and started her career at Saatchi & Saatchi Paris. She then spent several years as a Business Director at Ogilvy London and Ogilvy Paris before becoming head of media production in the fashion industry.",
+    "sophieBio2": "As a Creative Producer, Sophie leads projects for clients such as Hermès, Baccarat, Dior, Marc Jacobs, and many more.",
+    "fredBio1": "Fred Bauer was born and raised in Paris. After studying at ESRA Paris, he began his career in video editing before switching to VFX, where he made a significant impact at Mac Guff Paris. He returned to directing a few years later, before focusing on TV branding and becoming an art director at Canal+ for nearly five years.",
+    "fredBio2": "At annas-story, Fred leads a talented team of creatives across a range of projects, from art direction to postproduction."
+  },
+  "collectionsPage": {
+    "includes": "INCLUDES",
+    "whatsIncluded": "WHAT'S INCLUDED",
+    "contactUs": "GET IN TOUCH",
+    "save": "Save",
+    "moreSets": "MORE",
+    "ourSets": "SETS",
+    "collections": "Collections",
+    "breadcrumbSep": "/"
+  },
+  "categoryDetail": {
+    "back": "Back",
+    "client": "Client",
+    "colorsLabel": "Colour",
+    "formatsLabel": "Size",
+    "cta": "GET IN TOUCH",
+    "descriptionLabel": "Description",
+    "technicalLabel": "Technical Info",
+    "yearLabel": "Year",
+    "collectionLabel": "Collection",
+    "relatedTitle": "Related Works",
+    "wantLine1": "WANT",
+    "wantTo": "to",
+    "wantLine2": "SEE MORE",
+    "work": "WORK",
+    "works": "WORKS",
+    "notFound": "Category not found.",
+    "productNotFound": "Product not found."
+  },
+  "contact_panel": {
+    "title": "Get in touch",
+    "whatsapp": "Message on WhatsApp",
+    "instagram": "Instagram",
+    "email": "Email",
+    "hours_label": "Working hours",
+    "hours": "Mon–Sat: 10:00–20:00",
+    "location_label": "Location",
+    "location": "Batumi, Georgia",
+    "delivery": "Delivery across Georgia",
+    "closeLabel": "Close"
+  },
+  "contactPage": {
+    "line1": "LET'S",
+    "line2italic": "work",
+    "line2bold": "TOGETHER",
+    "email": "hello@annastory.ge",
+    "address": "Batumi, Georgia",
+    "phone": "+995 XXX XXX XXX",
+    "locationLabel": "Anna's Story",
+    "locationCity": "Batumi, Georgia",
+    "mapTitle": "Anna's Story — Batumi, Georgia"
   }
 }

@@ -8,6 +8,9 @@ import { useLanguage } from '../../../../lib/useLanguage'
 import {
   getCategoryBySlug,
   getRelatedCategories,
+  getCategoryName,
+  getCategoryDescription,
+  getProductName,
   type Category,
   type Product,
 } from '../../../../lib/categories-data'
@@ -15,7 +18,7 @@ import {
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
 // ── Product card ──────────────────────────────────────────────────────────────
-function ProductCard({ product, href }: { product: Product; href: string }) {
+function ProductCard({ product, href, name }: { product: Product; href: string; name: string }) {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -29,7 +32,7 @@ function ProductCard({ product, href }: { product: Product; href: string }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={product.coverImage}
-            alt={product.title}
+            alt={name}
             style={{
               width: '100%', height: '100%', objectFit: 'cover', display: 'block',
               transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -48,14 +51,14 @@ function ProductCard({ product, href }: { product: Product; href: string }) {
               fontSize: 'clamp(1.2rem, 2.5vw, 2rem)', fontWeight: 900,
               letterSpacing: '-0.02em', color: 'var(--text-muted)', opacity: 0.18,
               textAlign: 'center', padding: '1rem',
-            }}>{product.title}</span>
+            }}>{name}</span>
           </div>
         )}
       </div>
 
       <div style={{ paddingTop: '0.75rem' }}>
         <div style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-primary)' }}>
-          {product.title}
+          {name}
         </div>
         <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
           {product.price}
@@ -72,14 +75,16 @@ function ProductCard({ product, href }: { product: Product; href: string }) {
 
 // ── Related category card (Section 2) ──────────────────────────────────────
 function RelatedCard({ col, locale }: { col: Category; locale: string }) {
-  const thumb = col.coverImage || col.products[0]?.coverImage || ''
+  const thumb   = col.coverImage || col.products[0]?.coverImage || ''
+  const catName = getCategoryName(col, locale)
+  const prodName = col.products[0] ? getProductName(col.products[0], locale) : ''
   return (
     <Link href={`/${locale}/categories/${col.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
       <div style={{ overflow: 'hidden', aspectRatio: '4/5', background: 'var(--bg-secondary)' }}>
         {thumb ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={thumb} alt={col.name}
+            src={thumb} alt={catName}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'opacity 0.3s' }}
             onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.85' }}
             onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.opacity = '1' }}
@@ -94,15 +99,15 @@ function RelatedCard({ col, locale }: { col: Category; locale: string }) {
               fontSize: 'clamp(1rem, 2vw, 1.8rem)', fontWeight: 900,
               letterSpacing: '-0.02em', color: 'var(--text-muted)', opacity: 0.15,
               textAlign: 'center', padding: '0.75rem',
-            }}>{col.name}</span>
+            }}>{catName}</span>
           </div>
         )}
       </div>
       <div style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-primary)', marginTop: '0.75rem' }}>
-        {col.name}
+        {catName}
       </div>
       <div style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '0.85rem', fontWeight: 300, color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
-        {col.products[0]?.title}
+        {prodName}
       </div>
     </Link>
   )
@@ -113,9 +118,11 @@ export default function CategoryPage() {
   const params     = useParams()
   const { locale, t } = useLanguage()
   const cd = t.categoryDetail
+  const typeLabel = (t.categories as unknown as Record<string, string>).typeLabel ?? 'Bedding'
 
   const slug       = Array.isArray(params.slug) ? params.slug[0] : params.slug
   const category = getCategoryBySlug(slug ?? '')
+  const catName  = category ? getCategoryName(category, locale) : ''
 
   const related = useMemo(
     () => category ? getRelatedCategories(category, 4) : [],
@@ -219,7 +226,7 @@ export default function CategoryPage() {
               {t.nav.works}
             </Link>
             <span>/</span>
-            <span>{category.name}</span>
+            <span>{catName}</span>
           </div>
 
           {/* Products */}
@@ -234,6 +241,7 @@ export default function CategoryPage() {
                 <ProductCard
                   product={product}
                   href={`/${locale}/categories/${category.slug}/${product.id}`}
+                  name={getProductName(product, locale)}
                 />
               </motion.div>
             ))}
@@ -259,7 +267,7 @@ export default function CategoryPage() {
 
             {/* Brand label */}
             <div style={{ fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '1rem' }}>
-              {category.collection}
+              {typeLabel}
             </div>
 
             {/* Name */}
@@ -269,7 +277,7 @@ export default function CategoryPage() {
               letterSpacing: '-0.03em', textTransform: 'uppercase',
               color: 'var(--text-primary)', lineHeight: 1, margin: '0 0 2rem 0',
             }}>
-              {category.name}
+              {catName}
             </h1>
 
             {/* Divider */}
@@ -278,9 +286,9 @@ export default function CategoryPage() {
             {/* Meta rows */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {([
-                [cd.collectionLabel, category.collection],
+                [cd.collectionLabel, typeLabel],
                 [cd.yearLabel, category.year],
-                ['Works', String(count)],
+                [cd.works ?? 'WORKS', String(count)],
               ] as [string, string][]).map(([label, value]) => (
                 <div key={label} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
                   <span style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{label}</span>
@@ -292,7 +300,7 @@ export default function CategoryPage() {
             {/* Description */}
             {category.description && (
               <p style={{ fontSize: '0.85rem', lineHeight: 1.75, color: 'var(--text-secondary)', marginTop: '2rem', maxWidth: '320px' }}>
-                {category.description}
+                {getCategoryDescription(category, locale)}
               </p>
             )}
           </div>
@@ -303,7 +311,7 @@ export default function CategoryPage() {
             fontSize: '0.65rem', letterSpacing: '0.12em',
             textTransform: 'uppercase', color: 'var(--text-muted)',
           }}>
-            {count} {count === 1 ? 'WORK' : 'WORKS'}
+            {count} {count === 1 ? (cd.work ?? 'WORK') : (cd.works ?? 'WORKS')}
           </div>
         </motion.div>
       </div>

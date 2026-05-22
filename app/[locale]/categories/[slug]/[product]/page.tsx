@@ -9,6 +9,9 @@ import {
   getCategoryBySlug,
   getProductById,
   getRelatedCategories,
+  getCategoryName,
+  getProductName,
+  getProductDescription,
   type Category,
 } from '../../../../../lib/categories-data'
 
@@ -56,7 +59,10 @@ function Accordion({
 
 // ── Related card ──────────────────────────────────────────────────────────────
 function RelatedCard({ col, locale }: { col: Category; locale: string }) {
-  const thumb = col.products[0]?.coverImage || ''
+  const thumb    = col.products[0]?.coverImage || ''
+  const catName  = getCategoryName(col, locale)
+  const firstProd = col.products[0]
+  const prodName = firstProd ? getProductName(firstProd, locale) : ''
   return (
     <Link href={`/${locale}/categories/${col.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
       <div style={{
@@ -66,7 +72,7 @@ function RelatedCard({ col, locale }: { col: Category; locale: string }) {
         {thumb ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={thumb} alt={col.name}
+            src={thumb} alt={catName}
             style={{
               width: '100%', height: '100%', objectFit: 'cover',
               display: 'block', transition: 'transform 0.5s ease',
@@ -76,7 +82,7 @@ function RelatedCard({ col, locale }: { col: Category; locale: string }) {
           />
         ) : (
           <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '0.08em', textAlign: 'center', padding: '8px' }}>{col.name}</span>
+            <span style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '0.08em', textAlign: 'center', padding: '8px' }}>{catName}</span>
           </div>
         )}
       </div>
@@ -88,8 +94,8 @@ function RelatedCard({ col, locale }: { col: Category; locale: string }) {
         ))}
       </div>
 
-      <div style={{ fontSize: '0.82rem', fontWeight: 700, letterSpacing: '0.05em', color: 'var(--text-primary)', textTransform: 'uppercase', marginBottom: '0.15rem' }}>{col.name}</div>
-      <div style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{col.products[0]?.title}</div>
+      <div style={{ fontSize: '0.82rem', fontWeight: 700, letterSpacing: '0.05em', color: 'var(--text-primary)', textTransform: 'uppercase', marginBottom: '0.15rem' }}>{catName}</div>
+      <div style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{prodName}</div>
     </Link>
   )
 }
@@ -100,6 +106,7 @@ export default function ProductDetailPage() {
   const router   = useRouter()
   const { locale, t } = useLanguage()
   const cd = t.categoryDetail
+  const typeLabel = (t.categories as unknown as Record<string, string>).typeLabel ?? 'Bedding'
 
   const slug      = Array.isArray(params.slug)    ? params.slug[0]    : params.slug
   const productId = Array.isArray(params.product) ? params.product[0] : params.product
@@ -123,11 +130,14 @@ export default function ProductDetailPage() {
     return (
       <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg)' }}>
         <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-family-serif)', fontStyle: 'italic' }}>
-          Project not found.
+          {cd.productNotFound ?? 'Product not found.'}
         </p>
       </main>
     )
   }
+
+  const catName     = getCategoryName(category, locale)
+  const productName = getProductName(product, locale)
 
   const displayImages = product.images.length > 0
     ? product.images
@@ -230,14 +240,14 @@ export default function ProductDetailPage() {
                   fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 900,
                   letterSpacing: '-0.02em', color: 'var(--text-muted)',
                   textAlign: 'center', padding: '0 2rem',
-                }}>{category.name}</span>
+                }}>{catName}</span>
                 <span style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                  {product.title}
+                  {productName}
                 </span>
               </div>
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={currentImg} alt={product.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <img src={currentImg} alt={productName} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             )}
           </div>
         </motion.div>
@@ -259,15 +269,15 @@ export default function ProductDetailPage() {
             {/* Breadcrumb */}
             <div style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <Link href={`/${locale}/categories/${category.slug}`} style={{ color: 'var(--text-muted)', textDecoration: 'none', borderBottom: '0.5px solid var(--border)' }}>
-                {category.name}
+                {catName}
               </Link>
               <span>/</span>
-              <span style={{ color: 'var(--text-secondary)' }}>{product.title}</span>
+              <span style={{ color: 'var(--text-secondary)' }}>{productName}</span>
             </div>
 
             {/* Collection + year */}
             <div style={{ fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-              {category.collection} · {category.year}
+              {typeLabel} · {category.year}
             </div>
 
             {/* Title */}
@@ -276,10 +286,10 @@ export default function ProductDetailPage() {
               fontSize: 'clamp(2.2rem, 4.5vw, 4rem)', fontWeight: 900,
               letterSpacing: '-0.03em', color: 'var(--text-primary)',
               lineHeight: 1, margin: '0 0 0.2rem 0',
-            }}>{category.name}</h1>
+            }}>{catName}</h1>
 
             <div style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '1.1rem', fontWeight: 300, color: 'var(--text-secondary)', marginBottom: '1.75rem' }}>
-              {product.title}
+              {productName}
             </div>
 
             {/* Price */}
@@ -351,7 +361,7 @@ export default function ProductDetailPage() {
             {/* Client row */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', marginBottom: '1.25rem' }}>
               <span style={{ fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{cd.client}</span>
-              <span style={{ fontFamily: 'var(--font-family-serif)', fontSize: '1rem', fontWeight: 500, color: 'var(--text-primary)' }}>{category.name}</span>
+              <span style={{ fontFamily: 'var(--font-family-serif)', fontSize: '1rem', fontWeight: 500, color: 'var(--text-primary)' }}>{catName}</span>
             </div>
 
             {/* Credits */}
@@ -366,7 +376,7 @@ export default function ProductDetailPage() {
               open={openAccordion === 'description'}
               onToggle={() => setOpenAccordion(o => o === 'description' ? null : 'description')}
             >
-              <p style={{ fontSize: '0.85rem', lineHeight: 1.8, color: 'var(--text-secondary)', margin: 0 }}>{product.description}</p>
+              <p style={{ fontSize: '0.85rem', lineHeight: 1.8, color: 'var(--text-secondary)', margin: 0 }}>{getProductDescription(product, locale)}</p>
             </Accordion>
 
             <Accordion
@@ -377,7 +387,7 @@ export default function ProductDetailPage() {
               <div style={{ fontSize: '0.83rem', color: 'var(--text-secondary)' }}>
                 {([
                   [cd.yearLabel, category.year],
-                  [cd.collectionLabel, category.collection],
+                  [cd.collectionLabel, typeLabel],
                   [cd.formatsLabel, product.formats.join(', ')],
                 ] as [string, string][]).map(([label, val], i, arr) => (
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: '0.45rem', borderBottom: i < arr.length - 1 ? '0.5px solid var(--border)' : 'none', marginBottom: i < arr.length - 1 ? '0.45rem' : 0 }}>

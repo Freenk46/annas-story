@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useLanguage } from '../../lib/useLanguage'
 import { gsap } from '../../lib/gsap'
-import { categories as CATEGORIES } from '../../lib/categories-data'
+import { categories as CATEGORIES, getCategoryName, getProductName } from '../../lib/categories-data'
 
 const TOTAL = CATEGORIES.length
 
@@ -14,7 +14,21 @@ const lerpFn = (a: number, b: number, t: number)   => a + (b - a) * clamp(t, 0, 
 
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function CategoriesSection() {
-  const { locale } = useLanguage()
+  const { locale, t } = useLanguage()
+  const localeRef   = useRef(locale)
+  const typeLabelRef = useRef((t.categories as unknown as Record<string, string>).typeLabel ?? 'Bedding')
+  useEffect(() => {
+    localeRef.current    = locale
+    typeLabelRef.current = (t.categories as unknown as Record<string, string>).typeLabel ?? 'Bedding'
+    // Refresh DOM labels immediately on locale switch
+    const idx = Math.max(0, prevActive.current)
+    const activeCat = CATEGORIES[idx]
+    if (activeCat) {
+      if (campaignRef.current)   campaignRef.current.textContent   = getProductName(activeCat.products[0]!, localeRef.current)
+      if (collectionRef.current) collectionRef.current.textContent = typeLabelRef.current
+    }
+  }, [locale, t])
+
   const [entered, setEntered]         = useState(false)
   const enteredRef                     = useRef(false)
 
@@ -149,8 +163,11 @@ export default function CategoriesSection() {
       const activeIdx = clamp(Math.floor(total), 0, TOTAL - 1)
       if (activeIdx !== prevActive.current) {
         prevActive.current = activeIdx
-        if (campaignRef.current) campaignRef.current.textContent = CATEGORIES[activeIdx].products[0]?.title ?? ''
-        if (collectionRef.current) collectionRef.current.textContent = CATEGORIES[activeIdx].collection
+        const activeCat = CATEGORIES[activeIdx]
+        if (campaignRef.current && activeCat.products[0])
+          campaignRef.current.textContent = getProductName(activeCat.products[0], localeRef.current)
+        if (collectionRef.current)
+          collectionRef.current.textContent = typeLabelRef.current
       }
 
       // ── RIGHT — nav items ────────────────────────────────────────────────
@@ -356,12 +373,12 @@ export default function CategoriesSection() {
 
         {/* Campaign label */}
         <div ref={campaignRef} style={{ position: 'absolute', left: '15%', top: '50%', transform: 'translateX(-50%) translateY(-50%) rotate(-90deg)', fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '1.3rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap', zIndex: 5, pointerEvents: 'none', userSelect: 'none' }}>
-          {CATEGORIES[0].products[0]?.title ?? ''}
+          {CATEGORIES[0].products[0] ? getProductName(CATEGORIES[0].products[0], locale) : ''}
         </div>
 
         {/* Collection label */}
         <div ref={collectionRef} style={{ position: 'absolute', left: '70%', top: '50%', transform: 'translateX(-50%) translateY(-50%) rotate(90deg)', fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '1.3rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap', zIndex: 5, pointerEvents: 'none', userSelect: 'none' }}>
-          {CATEGORIES[0].collection}
+          {(t.categories as unknown as Record<string, string>).typeLabel ?? 'Bedding'}
         </div>
 
         {/* LEFT — number */}
@@ -402,8 +419,8 @@ export default function CategoriesSection() {
                   )}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '14px' }}>
-                  <span style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '22px', color: 'var(--text-muted)' }}>{col.name}</span>
-                  <span style={{ fontSize: '14px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--text-muted)', opacity: 0.4 }}>{col.collection}</span>
+                  <span style={{ fontFamily: 'var(--font-family-serif)', fontStyle: 'italic', fontSize: '22px', color: 'var(--text-muted)' }}>{getCategoryName(col, locale)}</span>
+                  <span style={{ fontSize: '14px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--text-muted)', opacity: 0.4 }}>{(t.categories as unknown as Record<string, string>).typeLabel ?? 'Bedding'}</span>
                 </div>
               </Link>
             ))}
@@ -413,13 +430,13 @@ export default function CategoriesSection() {
         {/* RIGHT — nav list */}
         <div ref={rightRef} style={{ position: 'relative', zIndex: 1, overflow: 'hidden' }}>
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 15, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 48px 20px 16px', borderBottom: '1px solid var(--border)', background: 'var(--bg)' }}>
-            <p style={{ fontSize: '14px', letterSpacing: '0.4em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Works</p>
+            <p style={{ fontSize: '14px', letterSpacing: '0.4em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{t.categories.worksHeader}</p>
           </div>
           {CATEGORIES.map((col, i) => (
             <div key={col.id} ref={el => { navRefs.current[i] = el }} style={{ position: 'absolute', left: 0, right: 0, textAlign: 'right', paddingRight: '8px', opacity: 0.32, borderRight: 'none', cursor: 'pointer', userSelect: 'none', zIndex: 1 }}>
               <Link href={`/${locale}/categories/${col.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <span style={{ fontFamily: 'var(--font-family-display)', fontSize: '34px', letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--text-primary)', lineHeight: 1.4, display: 'block' }}>
-                  {col.name}
+                  {getCategoryName(col, locale)}
                 </span>
               </Link>
             </div>
@@ -459,7 +476,7 @@ export default function CategoriesSection() {
               {/* Name + number */}
               <div className="cs-mob-header">
                 <span className="cs-mob-num">{col.id}</span>
-                <span className="cs-mob-name">{col.name}</span>
+                <span className="cs-mob-name">{getCategoryName(col, locale)}</span>
               </div>
 
               {/* Visual */}
@@ -477,8 +494,8 @@ export default function CategoriesSection() {
 
               {/* Collection + campaign */}
               <div className="cs-mob-meta">
-                <span>{col.collection}</span>
-                <span>{col.products[0]?.title ?? ''}</span>
+                <span>{(t.categories as unknown as Record<string, string>).typeLabel ?? 'Bedding'}</span>
+                <span>{col.products[0] ? getProductName(col.products[0], locale) : ''}</span>
               </div>
             </Link>
           </div>

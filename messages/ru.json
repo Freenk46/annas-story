@@ -1,114 +1,240 @@
 {
   "nav": {
+    "logo": "Anna's Story",
     "works": "РАБОТЫ",
     "about": "О НАС",
     "contact": "КОНТАКТ",
     "catalog": "Каталог",
-    "categories": "Коллекции",
+    "categories": "Категории",
     "aboutBrand": "О НАС",
     "our": "наш",
     "brand": "БРЕНД"
   },
   "hero": {
-    "line1": "ТВОРЧЕСКИЙ ДОМ",
+    "line1": "ДОМ ТВОРЧЕСТВА",
     "for": "для",
     "line2": "СМЕЛЫХ БРЕНДОВ",
     "scroll": "Листать"
   },
   "about": {
-    "label": "О нас",
-    "title": "Anna's Story — место, где уют становится искусством.",
-    "tagline": "Prototype — это креативная гибридная структура, работающая под ключ: от идеи до воплощения. Мы не просто продакшн, мы агентство, дизайн-студия и цифровая фабрика в одном месте. Место, где бренды становятся аутентичнее, смелее и выделяются из толпы.",
+    "tagline": "Anna's Story — это бренд премиального постельного текстиля, основанный в Батуми. Мы создаём комфорт, уют и спокойствие — для каждой комнаты, каждой семьи.",
     "link": "О нас",
-    "body": "Мы создаём постельное бельё, объединяющее долговечность и красоту. Каждый комплект из Батуми — с любовью, точностью и заботой.",
-    "stat1_value": "2019",
-    "stat1_label": "Год основания",
-    "stat2_value": "1200+",
-    "stat2_label": "Довольных клиентов",
-    "stat3_value": "100%",
-    "stat3_label": "Натуральные материалы"
+    "heading1": "О НАС",
+    "our": "наш",
+    "heading2": "БРЕНД",
+    "sophieBio1": "Anna's Story была основана в Батуми, Грузия, из любви к премиальному постельному текстилю. Наша миссия — принести комфорт уровня отеля в каждый дом.",
+    "sophieBio2": "Мы сотрудничаем с лучшими поставщиками материалов, чтобы создавать продукты, которые долговечны, красивы и делают каждую ночь особенной.",
+    "fredBio1": "Команда Anna's Story постоянно ищет новинки в мире текстиля. Мы сочетаем традиционное мастерство с современным дизайном.",
+    "fredBio2": "В Anna's Story мы руководим талантливой командой, которая каждый день работает над тем, чтобы сделать ваш дом ещё комфортнее."
+  },
+  "collections": {
+    "label": "Коллекции",
+    "viewLabel": "Смотреть",
+    "items": [
+      {
+        "number": "01",
+        "name": "Наборы",
+        "slug": "set"
+      },
+      {
+        "number": "02",
+        "name": "Полотенца",
+        "slug": "towel"
+      },
+      {
+        "number": "03",
+        "name": "Наволочки",
+        "slug": "pillowcase"
+      },
+      {
+        "number": "04",
+        "name": "Отдельные",
+        "slug": "single"
+      }
+    ],
+    "notFound": "Коллекция не найдена.",
+    "includes": "ВКЛЮЧАЕТ",
+    "whatsIncluded": "ЧТО ВХОДИТ В НАБОР",
+    "includedBadge": "Входит в набор",
+    "contactUs": "СВЯЗАТЬСЯ С НАМИ",
+    "save": "Экономия",
+    "moreSets": "ЕЩЁ",
+    "our": "наши",
+    "ourSets": "НАБОРЫ",
+    "breadcrumb": "Коллекции",
+    "breadcrumbSep": "/"
+  },
+  "categories": {
+    "label": "Категории",
+    "typeLabel": "Текстиль",
+    "worksHeader": "Работы",
+    "items": [
+      {
+        "number": "01",
+        "name": "Чистый комфорт",
+        "desc": "Бамбуковое волокно — мягкое, дышащее, гипоаллергенное"
+      },
+      {
+        "number": "02",
+        "name": "Спа-ритуал",
+        "desc": "Турецкий хлопок 600gsm — салонный комфорт дома"
+      },
+      {
+        "number": "03",
+        "name": "Льняная мечта",
+        "desc": "Бельгийский лён — натуральный, прочный, мягче с каждой стиркой"
+      },
+      {
+        "number": "04",
+        "name": "Девятое облако",
+        "desc": "Египетский хлопок 400TC — невесомая роскошь"
+      },
+      {
+        "number": "05",
+        "name": "Бамбук Люкс",
+        "desc": "Высококачественный бамбук — терморегулируемый комфорт"
+      },
+      {
+        "number": "06",
+        "name": "Наследие",
+        "desc": "Органический хлопок GOTS — экосертифицированный и чистый"
+      }
+    ]
+  },
+  "categoryPage": {
+    "notFound": "Категория не найдена.",
+    "collectionLabel": "Коллекция",
+    "yearLabel": "Год",
+    "work": "ТОВАР",
+    "works": "ТОВАРЫ",
+    "wantLine1": "ХОТИТЕ",
+    "wantTo": "увидеть",
+    "wantLine2": "БОЛЬШЕ"
+  },
+  "productPage": {
+    "back": "Назад",
+    "notFound": "Товар не найден.",
+    "colorsLabel": "Цвет",
+    "formatsLabel": "Размер",
+    "cta": "СВЯЗАТЬСЯ С НАМИ",
+    "client": "Клиент",
+    "descriptionLabel": "Описание",
+    "technicalLabel": "Техническая информация",
+    "yearLabel": "Год",
+    "collectionLabel": "Коллекция",
+    "relatedTitle": "Похожие товары"
+  },
+  "contact": {
+    "panelTitle": "Связаться с нами",
+    "closeLabel": "Закрыть",
+    "whatsappLabel": "WhatsApp",
+    "instagramLabel": "Instagram",
+    "emailLabel": "Эл. почта",
+    "hoursLabel": "Часы работы",
+    "hours": "Пн–Сб: 10:00–20:00",
+    "sundayClosed": "Воскресенье: закрыто",
+    "locationLabel": "Местоположение",
+    "location": "Батуми, Грузия",
+    "delivery": "Доставка по всей Грузии",
+    "contactSectionLabel": "Контакт",
+    "line1": "ДАВАЙТЕ",
+    "line2italic": "работать",
+    "line2bold": "ВМЕСТЕ",
+    "emailAddress": "hello@annastory.ge",
+    "address": "Батуми, Грузия",
+    "phone": "+995 XXX XXX XXX",
+    "mapTitleLabel": "Anna's Story",
+    "mapTitleCity": "Батуми, Грузия",
+    "socialInstagram": "Instagram",
+    "socialYoutube": "Youtube",
+    "socialFacebook": "Facebook",
+    "socialWhatsapp": "WhatsApp"
+  },
+  "contactDrawer": {
+    "heading": "СВЯЗАТЬСЯ С НАМИ",
+    "sundayClosed": "Воскресенье: закрыто",
+    "contactLabel": "Контакт",
+    "viewFull": "ПОЛНАЯ СТРАНИЦА КОНТАКТОВ",
+    "copyright": "ANNA'S STORY © 2025"
+  },
+  "footer": {
+    "brand": "Anna's Story",
+    "contactUs": "Связаться с нами",
+    "reel": "Ролик",
+    "play": "Играть",
+    "year": "2025",
+    "phone": "+995 XXX XXX XXX",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "whatsapp": "WhatsApp",
+    "copyright": "© 2025 Anna's Story. Все права защищены."
+  },
+  "bundles": {
+    "heading1": "КУПИТЬ",
+    "our": "наши",
+    "heading2": "НАБОРЫ",
+    "subtitle": "-15% на каждый набор",
+    "save": "Экономия"
   },
   "aboutPage": {
     "heading1": "О НАС",
     "our": "наш",
     "heading2": "БРЕНД",
-    "sophieBio1": "Софи Гуссен родилась на западном побережье Франции. Проведя несколько лет за границей, она окончила парижскую школу рекламы и начала карьеру в Saatchi & Saatchi Paris. Затем несколько лет работала директором по развитию бизнеса в Ogilvy London и Ogilvy Paris, после чего возглавила медиапроизводство в индустрии моды.",
-    "sophieBio2": "Как креативный продюсер, Софи руководит проектами для таких клиентов, как Hermès, Baccarat, Dior, Marc Jacobs и многих других.",
-    "fredBio1": "Фред Бауэр родился и вырос в Париже. После учёбы в ESRA Paris он начал карьеру в видеомонтаже, затем перешёл в VFX, где оставил значительный след в Mac Guff Paris. Спустя несколько лет вернулся к режиссуре, а затем сосредоточился на телевизионном брендинге и стал арт-директором Canal+ на почти пять лет.",
-    "fredBio2": "В annas-story Фред руководит командой талантливых креаторов в широком спектре проектов — от арт-дирекции до постпродакшна."
+    "sophieBio1": "Anna's Story была основана в Батуми, Грузия, из любви к премиальному постельному текстилю. Наша миссия — принести комфорт уровня отеля в каждый дом.",
+    "sophieBio2": "Мы сотрудничаем с лучшими поставщиками материалов, чтобы создавать продукты, которые долговечны, красивы и делают каждую ночь особенной.",
+    "fredBio1": "Команда Anna's Story постоянно ищет новинки в мире текстиля. Мы сочетаем традиционное мастерство с современным дизайном.",
+    "fredBio2": "В Anna's Story мы руководим талантливой командой, которая каждый день работает над тем, чтобы сделать ваш дом ещё комфортнее."
   },
-  "categories": {
-    "label": "Коллекции",
-    "items": [
-      { "number": "01", "name": "Pure Comfort", "desc": "Бамбуковое волокно — мягкое, дышащее, гипоаллергенное" },
-      { "number": "02", "name": "Spa Ritual", "desc": "Турецкий хлопок 600gsm — salon-комфорт дома" },
-      { "number": "03", "name": "Linen Dream", "desc": "Бельгийский лён — натуральный, долговечный" },
-      { "number": "04", "name": "Cloud Nine", "desc": "Египетский хлопок 400TC — лёгкость облака" },
-      { "number": "05", "name": "Bamboo Luxe", "desc": "Премиальный бамбук — терморегулируемый комфорт" },
-      { "number": "06", "name": "Heritage", "desc": "Органический хлопок GOTS — эко-сертифицированный" }
-    ]
-  },
-  "collections": {
-    "label": "Категории",
-    "items": [
-      { "number": "01", "name": "Комплекты", "slug": "set" },
-      { "number": "02", "name": "Полотенца", "slug": "towel" },
-      { "number": "03", "name": "Наволочки", "slug": "pillowcase" },
-      { "number": "04", "name": "Отдельные", "slug": "single" }
-    ]
-  },
-  "contact_panel": {
-    "title": "Связаться",
-    "whatsapp": "Написать в WhatsApp",
-    "instagram": "Instagram",
-    "email": "Email",
-    "hours_label": "Рабочие часы",
-    "hours": "Пн–Сб: 10:00–20:00",
-    "location_label": "Местонахождение",
-    "location": "Батуми, Грузия",
-    "delivery": "Доставка по Грузии"
+  "collectionsPage": {
+    "includes": "ВКЛЮЧАЕТ",
+    "whatsIncluded": "ЧТО ВХОДИТ В НАБОР",
+    "contactUs": "СВЯЗАТЬСЯ С НАМИ",
+    "save": "Экономия",
+    "moreSets": "ЕЩЁ",
+    "ourSets": "НАБОРЫ",
+    "collections": "Коллекции",
+    "breadcrumbSep": "/"
   },
   "categoryDetail": {
     "back": "Назад",
     "client": "Клиент",
     "colorsLabel": "Цвет",
-    "formatsLabel": "Формат",
-    "cta": "Запросить проект",
+    "formatsLabel": "Размер",
+    "cta": "СВЯЗАТЬСЯ С НАМИ",
     "descriptionLabel": "Описание",
-    "technicalLabel": "Тех. информация",
+    "technicalLabel": "Техническая информация",
     "yearLabel": "Год",
-    "collectionLabel": "Категория",
-    "relatedTitle": "Похожие работы",
+    "collectionLabel": "Коллекция",
+    "relatedTitle": "Похожие товары",
     "wantLine1": "ХОТИТЕ",
-    "wantTo": "ещё",
-    "wantLine2": "УВИДЕТЬ"
+    "wantTo": "увидеть",
+    "wantLine2": "БОЛЬШЕ",
+    "work": "ТОВАР",
+    "works": "ТОВАРЫ",
+    "notFound": "Категория не найдена.",
+    "productNotFound": "Товар не найден."
+  },
+  "contact_panel": {
+    "title": "Связаться с нами",
+    "whatsapp": "Написать в WhatsApp",
+    "instagram": "Instagram",
+    "email": "Эл. почта",
+    "hours_label": "Часы работы",
+    "hours": "Пн–Сб: 10:00–20:00",
+    "location_label": "Местоположение",
+    "location": "Батуми, Грузия",
+    "delivery": "Доставка по всей Грузии",
+    "closeLabel": "Закрыть"
   },
   "contactPage": {
     "line1": "ДАВАЙТЕ",
-    "line2italic": "создадим",
+    "line2italic": "работать",
     "line2bold": "ВМЕСТЕ",
     "email": "hello@annastory.ge",
     "address": "Батуми, Грузия",
     "phone": "+995 XXX XXX XXX",
-    "newsletterPlaceholder": "Подписаться на рассылку",
-    "newsletterBtn": "Ok",
     "locationLabel": "Anna's Story",
-    "locationCity": "Батуми, Грузия"
-  },
-  "contactDrawer": {
-    "heading": "СВЯЗАТЬСЯ",
-    "sundayClosed": "Воскресенье: закрыто",
-    "contactLabel": "Контакт",
-    "viewFull": "ОТКРЫТЬ СТРАНИЦУ КОНТАКТОВ",
-    "copyright": "ANNA'S STORY © 2025"
-  },
-  "footer": {
-    "brand": "Anna's Story",
-    "tagline": "Премиальное постельное бельё — Батуми, 2019",
-    "rights": "Все права защищены",
-    "agency": "Prototype",
-    "contactUs": "Связаться",
-    "play": "Смотреть",
-    "copyright": "© 2025 Prototype. Все права защищены."
+    "locationCity": "Батуми, Грузия",
+    "mapTitle": "Anna's Story — Батуми, Грузия"
   }
 }
