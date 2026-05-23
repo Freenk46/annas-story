@@ -408,8 +408,8 @@ export default function CategoriesSection() {
                 style={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 32px', textDecoration: 'none' }}
               >
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '16/10', background: 'var(--bg-secondary)', overflow: 'hidden' }}>
-                  {col.products[0]?.videos?.[0] ? (
-                    <video src={col.products[0].videos![0]} autoPlay muted loop playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  {col.coverVideo ? (
+                    <video src={col.coverVideo} autoPlay muted loop playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                   ) : (
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', padding: '24px 28px' }}>
                       <span style={{ fontFamily: 'var(--font-family-display)', fontSize: 'clamp(5rem, 10vw, 9rem)', lineHeight: 1, color: `rgba(var(--text-primary-rgb), 0.05)`, userSelect: 'none' }}>
@@ -481,8 +481,8 @@ export default function CategoriesSection() {
 
               {/* Visual */}
               <div className="cs-mob-visual">
-                {col.products[0]?.videos?.[0] ? (
-                  <video src={col.products[0].videos![0]} autoPlay muted loop playsInline />
+                {col.coverVideo ? (
+                  <video src={col.coverVideo} autoPlay muted loop playsInline />
                 ) : (
                   <div style={{ width: '100%', height: '100%', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <span style={{ fontFamily: 'var(--font-family-display)', fontSize: '4rem', color: `rgba(var(--text-primary-rgb), 0.06)` }}>

@@ -25,6 +25,7 @@ export type Category = {
   collection: string
   year: string
   coverImage: string
+  coverVideo?: string  // optional — shown instead of placeholder in category cards
   description: string
   descriptionKa: string
   descriptionRu: string
@@ -53,6 +54,7 @@ export const categories: Category[] = [
     name: 'DUVET COVERS', nameKa: 'საბნის გარსები', nameRu: 'ПОДОДЕЯЛЬНИКИ',
     collection: 'Bedding', year: '2025',
     coverImage: '/images/categories/duvet-covers-cover.jpg',
+    coverVideo: '/videos/categories/duvet-covers-cover.mp4',
     description: 'Crafted from 100% long-staple cotton, our duvet covers combine silky softness with lasting durability. Available in timeless tones to suit any bedroom.',
     descriptionKa: '100% გრძელბოჭკოვანი ბამბისგან დამზადებული საბნის გარსები, რომლებიც რბილობასა და გამძლეობას აერთიანებს. ხელმისაწვდომია უმარტივეს ტონებში.',
     descriptionRu: 'Пододеяльники из 100% длинноволокнистого хлопка сочетают шелковистую мягкость с долговечностью. Доступны в классических оттенках.',
@@ -153,6 +155,7 @@ export const categories: Category[] = [
     name: 'PILLOWCASES', nameKa: 'ბალიშის გარსები', nameRu: 'НАВОЛОЧКИ',
     collection: 'Bedding', year: '2025',
     coverImage: '/images/categories/pillowcases-cover.jpg',
+    coverVideo: '/videos/categories/pillowcases-cove.mp4',
     description: 'The finishing touch of a perfect bed. Our pillowcases are cut generously, stitched with care, and available in every colour from our seasonal palette.',
     descriptionKa: 'რბილი ბალიშის გარსები სასიამოვნო ძილისთვის. ყოველი რეცხვით უფრო კომფორტული და გამძლე.',
     descriptionRu: 'Мягкие наволочки для приятного сна. С каждой стиркой становятся комфортнее и долговечнее.',
@@ -203,6 +206,7 @@ export const categories: Category[] = [
     name: 'DUVETS', nameKa: 'საბნები', nameRu: 'ОДЕЯЛА',
     collection: 'Bedding', year: '2025',
     coverImage: '/images/categories/duvets-cover.jpg',
+    coverVideo: '/videos/categories/duvets-cover.mp4',
     description: 'The heart of your bed. Our duvets are filled with responsibly sourced down or premium microfibre and come in summer, all-season, and winter weights.',
     descriptionKa: 'პრემიუმ საბნები ყველა სეზონისთვის. აირჩიე სეზონის მიხედვით — საზაფხულო, ყოველსეზონური ან საზამთრო.',
     descriptionRu: 'Одеяла премиум-класса для любого сезона. Выберите по сезону — летнее, всесезонное или зимнее.',
@@ -253,6 +257,7 @@ export const categories: Category[] = [
     name: 'PILLOWS', nameKa: 'ბალიშები', nameRu: 'ПОДУШКИ',
     collection: 'Bedding', year: '2025',
     coverImage: '/images/categories/pillows-cover.jpg',
+    coverVideo: '/videos/categories/pillows-cover.mp4',
     description: 'The right pillow transforms your sleep. We offer soft, medium, and firm options in down, memory foam, and hypoallergenic microfibre fills.',
     descriptionKa: 'ჰიპოალერგენული ბალიშები ყველა ძილის სტილისთვის. სამი სიმტკიცის დონე — რბილი, საშუალო, მაგარი.',
     descriptionRu: 'Гипоаллергенные подушки для любого стиля сна. Три уровня жёсткости — мягкий, средний, жёсткий.',
@@ -303,6 +308,7 @@ export const categories: Category[] = [
     name: 'TOWELS', nameKa: 'პირსახოცები', nameRu: 'ПОЛОТЕНЦА',
     collection: 'Bedding', year: '2025',
     coverImage: '/images/categories/towels-cover.jpg',
+    coverVideo: '/videos/categories/towels-cover.mp4',
     description: 'Absorbent, fast-drying, and indulgently soft. Our towels are woven from 600 gsm Turkish cotton and get better with every wash.',
     descriptionKa: 'შთამნთქმელი, სწრაფმშრალი პირსახოცები პრემიუმ ბამბისგან. სასტუმრო ხარისხი თქვენს სახლში.',
     descriptionRu: 'Впитывающие, быстросохнущие полотенца из хлопка премиум-класса. Качество отеля у вас дома.',
