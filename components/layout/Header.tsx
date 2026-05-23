@@ -229,7 +229,7 @@ export default function Header() {
 
           {/* Language switcher + theme toggle — always visible */}
           <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-            <LanguageSwitcher isDark={isDark} />
+            <LanguageSwitcher textColor={textColor} />
 
             <button
               onClick={toggle}
