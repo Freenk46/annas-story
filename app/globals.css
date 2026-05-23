@@ -8,9 +8,12 @@
   --color-ghost: #999999;
   --color-line: #E5E5E5;
 
-  --font-family-display: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  --font-family-serif: var(--font-serif), "Cormorant Garamond", var(--font-georgian), Georgia, serif;
-  --font-family-body: var(--font-body), "Inter", system-ui, sans-serif;
+  /* Georgian fallback is included in every stack so Georgian script
+     renders correctly even in display/serif headings               */
+  --font-family-display:  var(--font-display),  'Cormorant Garamond', var(--font-georgian), 'Noto Sans Georgian', Georgia, serif;
+  --font-family-serif:    var(--font-serif),    'Cormorant Garamond', var(--font-georgian), 'Noto Sans Georgian', Georgia, serif;
+  --font-family-body:     var(--font-body),     'Inter', var(--font-georgian), 'Noto Sans Georgian', system-ui, sans-serif;
+  --font-family-georgian: var(--font-georgian), 'Noto Sans Georgian', sans-serif;
 }
 
 /* ── Theme tokens ────────────────────────────────────────────────────────────── */
@@ -79,8 +82,12 @@ body {
   background: var(--border);
 }
 
-body.font-georgian {
-  font-family: var(--font-georgian), 'Noto Sans Georgian', sans-serif;
+/* Georgian locale — body text uses Noto Sans Georgian.
+   Headings keep their explicit font-family but fall back to
+   Noto Sans Georgian for Georgian script (included in every stack). */
+[lang="ka"],
+[data-locale="ka"] {
+  font-family: var(--font-family-georgian);
 }
 
 @keyframes drawCurve {
