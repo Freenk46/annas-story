@@ -105,6 +105,7 @@ export const categories: Category[] = [
     name: 'BED SHEETS', nameKa: 'ლეიბის თეთრეული', nameRu: 'ПРОСТЫНИ',
     collection: 'Bedding', year: '2025',
     coverImage: '/images/categories/bed-sheets-cover.jpg',
+    coverVideo: '/videos/categories/bed-sheets-cover.mp4',
     description: 'Slip into sheets made for deep, uninterrupted sleep. Woven from the finest cotton with a breathable finish, they stay cool in summer and cosy in winter.',
     descriptionKa: 'სუნთქვადი პირსაფენები სრულყოფილი ღამის ძილისთვის. კრიალა და გრილი შეხებაზე, განახლებული ძილის გამოცდილება.',
     descriptionRu: 'Дышащие простыни для идеального ночного сна. Хрустящие и прохладные на ощупь — обновлённый опыт отдыха.',
