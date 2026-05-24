@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutGrid, Package, Tag, Archive, ShoppingBag, LogOut } from 'lucide-react'
+import { Package, Tag, Archive, ShoppingBag, LogOut, Sun, Moon } from 'lucide-react'
 import { createClient } from '../../lib/supabase/client'
 import { useRouter } from 'next/navigation'
-import { cn } from '../../lib/utils'
+import { useAdminTheme } from '../../lib/adminTheme'
 
 const nav = [
   { href: '/admin/products',   label: 'პროდუქტები',  icon: Package },
@@ -15,8 +15,17 @@ const nav = [
 ]
 
 export default function AdminSidebar() {
-  const pathname = usePathname()
-  const router   = useRouter()
+  const pathname         = usePathname()
+  const router           = useRouter()
+  const { theme, toggle, isDark } = useAdminTheme()
+
+  const bg         = isDark ? '#141414' : '#ffffff'
+  const border     = isDark ? '#2a2a2a' : '#e8e0d5'
+  const logoColor  = isDark ? '#f0ede8' : '#2c2c2c'
+  const subColor   = isDark ? '#444' : '#bbb'
+  const activeText = isDark ? '#f0ede8' : '#2c2c2c'
+  const activeBg   = isDark ? '#2a2a2a' : '#f0ede8'
+  const inactiveText = isDark ? '#666' : '#999'
 
   const handleLogout = async () => {
     const supabase = createClient()
@@ -24,41 +33,67 @@ export default function AdminSidebar() {
     router.push('/admin/login')
   }
 
+  const btnBase: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+    padding: '0.6rem 0.75rem',
+    borderRadius: '8px',
+    marginBottom: '2px',
+    textDecoration: 'none',
+    fontSize: '0.875rem',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'all 0.15s ease',
+    width: '100%',
+    textAlign: 'left' as const,
+  }
+
   return (
     <aside style={{
-      width: '240px',
+      width: '220px',
       minHeight: '100vh',
-      background: '#1a1a1a',
-      borderRight: '1px solid #2a2a2a',
+      background: bg,
+      borderRight: `1px solid ${border}`,
       display: 'flex',
       flexDirection: 'column',
       padding: '1.5rem 0',
       flexShrink: 0,
+      transition: 'background 0.2s, border-color 0.2s',
     }}>
+
       {/* Logo */}
       <div style={{
-        padding: '0 1.5rem 1.5rem',
-        borderBottom: '1px solid #2a2a2a',
+        padding: '0 1.25rem 1.25rem',
+        borderBottom: `1px solid ${border}`,
         marginBottom: '1rem',
       }}>
         <Link href="/admin/products" style={{ textDecoration: 'none' }}>
           <div style={{
-            fontFamily: 'var(--font-family-display)',
+            fontFamily: 'var(--font-family-display, Georgia, serif)',
             fontWeight: 700,
-            fontSize: '1.1rem',
-            color: '#f0ede8',
+            fontSize: '1.05rem',
+            color: logoColor,
             letterSpacing: '-0.01em',
+            transition: 'color 0.2s',
           }}>
             Anna&apos;s Story
           </div>
-          <div style={{ fontSize: '0.7rem', color: '#555', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+          <div style={{
+            fontSize: '0.65rem',
+            color: subColor,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            marginTop: '1px',
+          }}>
             Admin Panel
           </div>
         </Link>
       </div>
 
-      {/* Nav */}
-      <nav style={{ flex: 1, padding: '0 0.75rem' }}>
+      {/* Nav links */}
+      <nav style={{ flex: 1, padding: '0 0.625rem' }}>
         {nav.map(({ href, label, icon: Icon }) => {
           const active = pathname.startsWith(href)
           return (
@@ -66,48 +101,69 @@ export default function AdminSidebar() {
               key={href}
               href={href}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.6rem 0.75rem',
-                borderRadius: '8px',
-                marginBottom: '2px',
-                textDecoration: 'none',
-                fontSize: '0.875rem',
+                ...btnBase,
                 fontWeight: active ? 600 : 400,
-                color: active ? '#f0ede8' : '#888',
-                background: active ? '#2a2a2a' : 'transparent',
-                transition: 'all 0.15s ease',
+                color: active ? activeText : inactiveText,
+                background: active ? activeBg : 'transparent',
               }}
             >
-              <Icon size={16} strokeWidth={active ? 2 : 1.5} />
+              <Icon size={15} strokeWidth={active ? 2 : 1.5} />
               {label}
             </Link>
           )
         })}
       </nav>
 
-      {/* Logout */}
-      <div style={{ padding: '1rem 1.5rem', borderTop: '1px solid #2a2a2a' }}>
+      {/* Bottom actions */}
+      <div style={{
+        padding: '0.75rem 0.625rem 0',
+        borderTop: `1px solid ${border}`,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '2px',
+      }}>
+
+        {/* Theme toggle */}
+        <button
+          onClick={toggle}
+          style={{
+            ...btnBase,
+            color: inactiveText,
+            opacity: 0.7,
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.opacity = '1'
+            e.currentTarget.style.color = activeText
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.opacity = '0.7'
+            e.currentTarget.style.color = inactiveText
+          }}
+        >
+          {isDark
+            ? <><Sun size={15} /> ღია თემა</>
+            : <><Moon size={15} /> მუქი თემა</>
+          }
+        </button>
+
+        {/* Logout */}
         <button
           onClick={handleLogout}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            color: '#666',
-            fontSize: '0.875rem',
-            padding: '0.5rem 0',
-            width: '100%',
-            transition: 'color 0.15s ease',
+            ...btnBase,
+            color: inactiveText,
+            opacity: 0.7,
           }}
-          onMouseEnter={e => (e.currentTarget.style.color = '#f0ede8')}
-          onMouseLeave={e => (e.currentTarget.style.color = '#666')}
+          onMouseEnter={e => {
+            e.currentTarget.style.opacity = '1'
+            e.currentTarget.style.color = '#f87171'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.opacity = '0.7'
+            e.currentTarget.style.color = inactiveText
+          }}
         >
-          <LogOut size={16} />
+          <LogOut size={15} />
           გამოსვლა
         </button>
       </div>
